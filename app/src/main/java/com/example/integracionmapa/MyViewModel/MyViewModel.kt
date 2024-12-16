@@ -6,11 +6,14 @@ import androidx.compose.ui.Modifier
 import com.mapbox.geojson.Point
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
-
+import com.example.integracionmapa.MyViewModel.Marcadores
 
 class MyViewModel {
+
     @Composable
-    fun ExecuteMapboxMap(){
+    fun ExecuteMapboxMap() {
+        val marcadores = Marcadores() // Instanciar la clase Marcadores
+
         MapboxMap(
             Modifier.fillMaxSize(),
             mapViewportState = rememberMapViewportState {
@@ -21,6 +24,8 @@ class MyViewModel {
                     bearing(0.0)
                 }
             },
-        )
+        ) {
+            marcadores.PutCircleAnnotation()
+        }
     }
 }
